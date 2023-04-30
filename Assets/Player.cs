@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -37,11 +38,19 @@ public class Player : MonoBehaviour
     public Transform speedNeedle;
     public float speedNeedle_MaxRotation;
 
+    [Space]
+    public GameObject toDestroy_Navigation;
+    public GameObject toDestroy_Dashboard;
+    public ParticleSystem winParticles;
+    public GameObject winText;
+
     bool isAccelerating = false;
     Vector2 input_Intention = Vector2.zero;
     Vector2 input_Direction = Vector2.zero;
 
     bool isActionMode = false;
+
+    bool isDisabled = false;
 
     Coroutine collisionPenaltyThread = null;
     Coroutine actionThread = null;
@@ -53,6 +62,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (isDisabled) return;
+
         GetInput();
         UpdateUI();
     }
@@ -184,7 +195,6 @@ public class Player : MonoBehaviour
                 if (!hitGoal.active) NextGoal();
 
                 Statics.SFX.PlaySound(SoundEffects.scorePackage);
-                Debug.Log("SCORE!");
             }
 
             // Spawn thrown package!
@@ -202,12 +212,46 @@ public class Player : MonoBehaviour
 
         if (goals.Count <= 0)
         {
-            Debug.Log("YOU WIN!");
+            Win();
             return;
         }
 
         currentGoal = goals[0];
         currentGoal.Activate();
+    }
+
+
+    private void Win()
+    {
+        StartCoroutine(Win());
+
+        IEnumerator Win()
+        {
+            isDisabled = true;
+
+            Time.timeScale = 0.1f;
+
+            Statics.CameraController.zoomController.ApplyZoom(0.5f, 1f, Curves.Curve.Smooth);
+
+            Statics.VFX.FlashScreen(0.5f, 0.5f, 1.5f, new Color(0.8f, 0.8f, 0.8f));
+
+            yield return new WaitForSecondsRealtime(0.5f);
+
+            winParticles.Play();
+
+            toDestroy_Navigation.SetActive(false);
+            toDestroy_Dashboard.SetActive(false);
+
+            winText.SetActive(true);
+
+            yield return new WaitForSecondsRealtime(5f);
+
+            Statics.VFX.FlashScreen(2f, 2f, 2f, Color.black);
+
+            yield return new WaitForSecondsRealtime(2f);
+
+            SceneManager.LoadScene("Finish");
+        }
     }
 
 

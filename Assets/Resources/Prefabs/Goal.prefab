@@ -4988,6 +4988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pulseColor: {r: 1, g: 0.9863823, b: 0.8066038, a: 1}
   pulseSpeed: 1
+  unscaledTime: 1
 --- !u!114 &3243353280948350971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5005,6 +5006,7 @@ MonoBehaviour:
   uniformRandomRange: {x: 1, y: 1}
   randomAxisMultiplierLower: {x: -1.5, y: -1.5, z: -1.5}
   randomAxisMultiplierUpper: {x: 1.5, y: 1.5, z: 1.5}
+  unscaledTime: 1
 --- !u!1 &3243353281293941015
 GameObject:
   m_ObjectHideFlags: 0
@@ -5105,6 +5107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pulseColor: {r: 1, g: 0.9863823, b: 0.8066038, a: 1}
   pulseSpeed: 1
+  unscaledTime: 1
 --- !u!114 &3243353281293941097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5122,6 +5125,7 @@ MonoBehaviour:
   uniformRandomRange: {x: 1, y: 1}
   randomAxisMultiplierLower: {x: -1.5, y: -1.5, z: -1.5}
   randomAxisMultiplierUpper: {x: 1.5, y: 1.5, z: 1.5}
+  unscaledTime: 1
 --- !u!1 &3243353281299803341
 GameObject:
   m_ObjectHideFlags: 0
@@ -5302,6 +5306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pulseColor: {r: 1, g: 0.9863823, b: 0.8066038, a: 1}
   pulseSpeed: 1
+  unscaledTime: 1
 --- !u!1 &3243353282204610197
 GameObject:
   m_ObjectHideFlags: 0
@@ -5362,7 +5367,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -8522544833390982603, guid: d815dab8ac3547f4fb8dcc69bb4ec6ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5406,15 +5411,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d815dab8ac3547f4fb8dcc69bb4ec6ab, type: 2}
+  m_sharedMaterial: {fileID: -8522544833390982603, guid: d815dab8ac3547f4fb8dcc69bb4ec6ab, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289523199
-  m_fontColor: {r: 1, g: 0.93062204, b: 0.6745283, a: 1}
+    rgba: 4283229183
+  m_fontColor: {r: 1, g: 0.8909572, b: 0.2971698, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5431,8 +5436,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8
-  m_fontSizeBase: 8
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5506,7 +5511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ccbfdc9beb21d479978abc38d8f4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleMinMax: {x: 0.75, y: 1.25}
+  scaleMinMax: {x: 1, y: 1.25}
   speed: 1
   randomStart: 1
 --- !u!1 &3243353282504770422
@@ -5609,6 +5614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pulseColor: {r: 1, g: 0.9863823, b: 0.8066038, a: 1}
   pulseSpeed: 1
+  unscaledTime: 1
 --- !u!114 &3243353282504770378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5626,6 +5632,7 @@ MonoBehaviour:
   uniformRandomRange: {x: 1, y: 1}
   randomAxisMultiplierLower: {x: -1.5, y: -1.5, z: -1.5}
   randomAxisMultiplierUpper: {x: 1.5, y: 1.5, z: 1.5}
+  unscaledTime: 1
 --- !u!1 &6320274693387272489
 GameObject:
   m_ObjectHideFlags: 0

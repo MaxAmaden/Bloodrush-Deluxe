@@ -14,6 +14,9 @@ public class RotationAnimation_Spin : RotationAnimation
     public Vector3 randomAxisMultiplierLower = Vector3.one;
     public Vector3 randomAxisMultiplierUpper = Vector3.one;
 
+    [Space]
+    public bool unscaledTime;
+
     Vector3 currentAngle;
 
     void OnEnable()
@@ -31,7 +34,9 @@ public class RotationAnimation_Spin : RotationAnimation
     {
         if (toRotate)
         {
-            currentAngle += rotationSpeed * Time.deltaTime;
+            if (unscaledTime) currentAngle += rotationSpeed * Time.unscaledDeltaTime;
+            else currentAngle += rotationSpeed * Time.deltaTime;
+
             transform.rotation = Quaternion.Euler(currentAngle);
         }
     }

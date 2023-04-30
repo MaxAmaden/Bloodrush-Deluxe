@@ -7,6 +7,9 @@ public class SpriteAnimation_ColourPulse : SpriteAnimation
     public Color pulseColor;
     public float pulseSpeed;
 
+    [Space]
+    public bool unscaledTime;
+
     Color startColor;
 
     SpriteRenderer sr;
@@ -21,7 +24,8 @@ public class SpriteAnimation_ColourPulse : SpriteAnimation
 
     private void Update()
     {
-        timer += Time.deltaTime * pulseSpeed;
+        if (unscaledTime) timer += Time.unscaledDeltaTime * pulseSpeed;
+        else timer += Time.deltaTime * pulseSpeed;
 
         sr.color = Color.Lerp(startColor, pulseColor, Mathf.Sin(timer));
     }

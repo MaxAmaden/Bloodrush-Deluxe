@@ -9,6 +9,6 @@ public class NavigationMarker : MonoBehaviour
     private void Update()
     {
         transform.position = player.transform.position;
-        transform.rotation = Quaternion.Euler(0, 0, 360f - Statics.Maths.GetAngleFromVectorDirection((player.currentGoal.transform.position - player.transform.position).normalized));
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 360f - Statics.Maths.GetAngleFromVectorDirection((player.currentGoal.transform.position - player.transform.position).normalized)), Time.deltaTime * 10f);
     }
 }
