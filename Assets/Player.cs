@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
     public float collisionPenalty_MinSpeed = 3f;
     public float collisionPenalty_Duration = 0.5f;
 
+    [Space]
+    [HideInInspector] public Goal currentGoal = null;
+    public List<Goal> goals = new List<Goal>();
+
 
     [Space] [Header("REFERENCES")]
     public Rigidbody2D rb;
@@ -41,6 +45,11 @@ public class Player : MonoBehaviour
 
     Coroutine collisionPenaltyThread = null;
     Coroutine actionThread = null;
+
+    private void Start()
+    {
+        NextGoal();
+    }
 
     private void Update()
     {
@@ -119,7 +128,7 @@ public class Player : MonoBehaviour
             }
 
             // If package was not held for long enough, cancel throw.
-            if (holdTimer < 0.25f)
+            if (holdTimer < 0.15f)
             {
                 dashboardUI.Anim_CancelThrowPackage();
 
@@ -130,11 +139,11 @@ public class Player : MonoBehaviour
 
             // Otherwise, toss away!
             dashboardUI.Anim_ThrowPackage();
-            yield return new WaitForSecondsRealtime(0.15f);
+            yield return new WaitForSecondsRealtime(0.2f);
 
             yield return ThrowPackage_Check();
 
-            yield return new WaitForSecondsRealtime(0.25f);
+            //yield return new WaitForSecondsRealtime(0.25f);
 
             // Reset action thread reference.
             actionThread = null;
@@ -148,7 +157,7 @@ public class Player : MonoBehaviour
             List<RaycastHit2D> potentialHits = new List<RaycastHit2D>(Physics2D.RaycastAll(transform.position, (targetPoint - (Vector2)transform.position).normalized, 20f, thrownPackage_LayerMask));
 
             Vector2 hitPoint = targetPoint;
-            bool hitGoal = false;
+            Goal hitGoal = null;
             for (int i = 0; i < potentialHits.Count; i++)
             {
                 if (potentialHits[i].collider.tag == "NoPenalty" || potentialHits[i].collider.transform == transform)
@@ -159,14 +168,21 @@ public class Player : MonoBehaviour
                 }
 
                 hitPoint = potentialHits[i].point;
-                if (potentialHits[i].collider.tag == "Goal") hitGoal = true;
+                if (potentialHits[i].collider.tag == "Goal")
+                {
+                    hitGoal = potentialHits[i].collider.gameObject.GetComponent<Goal>();
+                    if (!hitGoal.active) hitGoal = null;
+                }
                 break;
             }
 
 
             // If package hit a goal...
-            if (hitGoal)
+            if (hitGoal != null)
             {
+                hitGoal.Score();
+                if (!hitGoal.active) NextGoal();
+
                 Statics.SFX.PlaySound(SoundEffects.scorePackage);
                 Debug.Log("SCORE!");
             }
@@ -177,6 +193,21 @@ public class Player : MonoBehaviour
 
             yield break;
         }
+    }
+
+
+    private void NextGoal()
+    {
+        if (currentGoal != null) goals.RemoveAt(0);
+
+        if (goals.Count <= 0)
+        {
+            Debug.Log("YOU WIN!");
+            return;
+        }
+
+        currentGoal = goals[0];
+        currentGoal.Activate();
     }
 
 

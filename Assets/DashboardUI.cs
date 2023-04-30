@@ -72,9 +72,9 @@ public class DashboardUI : MonoBehaviour
 
         IEnumerator ThrowPackage()
         {
-            yield return Animate_LocalTransformLerp(0.15f, RHand_HeldPackage, RHand_HeldPackage_PreThrowTransform, RHand_HeldPackage_PostThrowTransform, Curves.GetCurve(Curves.Curve.SlowStartFastEnd), true);
+            yield return Animate_LocalTransformLerp(0.1f, RHand_HeldPackage, RHand_HeldPackage_PreThrowTransform, RHand_HeldPackage_PostThrowTransform, Curves.GetCurve(Curves.Curve.SlowStartFastEnd), true);
 
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSecondsRealtime(0.05f);
 
             yield return Animate_LocalTransformLerp(0.2f, RHand_HeldPackage, RHand_HeldPackage_HideTransform, RHand_HeldPackage_ShowTransform, Curves.GetCurve(Curves.Curve.Overshoot_Small), true);
         }
