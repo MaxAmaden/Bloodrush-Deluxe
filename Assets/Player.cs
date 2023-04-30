@@ -158,8 +158,6 @@ public class Player : MonoBehaviour
                     continue;
                 }
 
-                Debug.Log(potentialHits[i].collider.gameObject.name);
-
                 hitPoint = potentialHits[i].point;
                 if (potentialHits[i].collider.tag == "Goal") hitGoal = true;
                 break;
@@ -293,15 +291,5 @@ public class Player : MonoBehaviour
             // Return to normal.
             foreach (TrailRenderer tyreTrail in tyreTrails) tyreTrail.emitting = true;
         }
-    }
-
-
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-
-        Vector2 targetPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Gizmos.DrawRay(transform.position, (targetPoint - (Vector2)transform.position).normalized * 20f);
     }
 }

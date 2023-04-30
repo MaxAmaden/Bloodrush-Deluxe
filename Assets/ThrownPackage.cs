@@ -5,6 +5,8 @@ using UnityEngine;
 public class ThrownPackage : MonoBehaviour
 {
     public FadeObject throwLine;
+    public ParticleSystem[] throwParticles;
+    public ParticleSystem[] hitParticles;
 
     public void ThrowPackage(Vector2 from, Vector2 to)
     {
@@ -14,9 +16,12 @@ public class ThrownPackage : MonoBehaviour
         {
             // Set up line.
             transform.position = from;
-            throwLine.transform.localRotation = Quaternion.Euler(0, 0, 360f - Statics.Maths.GetAngleFromVectorDirection((to - from).normalized));
+            transform.localRotation = Quaternion.Euler(0, 0, 360f - Statics.Maths.GetAngleFromVectorDirection((to - from).normalized));
 
-            // Animate.
+            // Throw particles.
+            foreach (ParticleSystem throwParticle in throwParticles) throwParticle.Play();
+
+            // Animate line.
             float prog = 0f;
             float speed = 1f / 0.025f;
             Vector3 startScale = new Vector3(0f, 0f, 1f);
@@ -31,11 +36,19 @@ public class ThrownPackage : MonoBehaviour
                 yield return null;
             }
 
+            // Hit particles.
+            foreach (ParticleSystem hitParticle in hitParticles)
+            {
+                hitParticle.transform.position = to;
+                hitParticle.Play();
+            }
+
             yield return new WaitForSecondsRealtime(0.1f);
 
+            // Fade out line.
             throwLine.FadeOut();
-            yield return new WaitForSecondsRealtime(throwLine.timeToFade);
 
+            yield return new WaitForSeconds(5f);
             Destroy(gameObject);
         }
     }
