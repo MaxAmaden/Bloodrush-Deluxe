@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
             }
 
             // If package was not held for long enough, cancel throw.
-            if (holdTimer < 0.3f)
+            if (holdTimer < 0.25f)
             {
                 dashboardUI.Anim_CancelThrowPackage();
 

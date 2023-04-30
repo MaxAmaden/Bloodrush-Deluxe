@@ -6,30 +6,37 @@ public class ThrownPackage : MonoBehaviour
 {
     public FadeObject throwLine;
 
-    private Vector2 temp_HitPoint = Vector2.zero;
-
     public void ThrowPackage(Vector2 from, Vector2 to)
     {
-        temp_HitPoint = from;
-
         StartCoroutine(ThrowPackage());
 
         IEnumerator ThrowPackage()
         {
+            // Set up line.
             transform.position = from;
-            throwLine.transform.rotation = Quaternion.Euler(0, 0, Statics.Maths.GetAngleFromVectorDirection((to - from).normalized));
-            throwLine.transform.localScale = new Vector3(0.1f, Vector2.Distance(from, to), 1f);
+            throwLine.transform.localRotation = Quaternion.Euler(0, 0, 360f - Statics.Maths.GetAngleFromVectorDirection((to - from).normalized));
+
+            // Animate.
+            float prog = 0f;
+            float speed = 1f / 0.025f;
+            Vector3 startScale = new Vector3(0f, 0f, 1f);
+            Vector3 endScale = new Vector3(0.05f, Vector2.Distance(from, to), startScale.z);
+            AnimationCurve curve = Curves.GetCurve(Curves.Curve.FastStartSlowEnd);
+            while (prog < 1f)
+            {
+                prog += Time.unscaledDeltaTime * speed;
+
+                throwLine.transform.localScale = Vector3.Lerp(startScale, endScale, curve.Evaluate(prog));
+
+                yield return null;
+            }
+
+            yield return new WaitForSecondsRealtime(0.1f);
 
             throwLine.FadeOut();
             yield return new WaitForSecondsRealtime(throwLine.timeToFade);
 
             Destroy(gameObject);
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(temp_HitPoint, 0.5f);
     }
 }
