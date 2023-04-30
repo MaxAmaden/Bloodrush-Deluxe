@@ -8,6 +8,7 @@ public class Outro : MonoBehaviour
     public FadeObject text0;
     public FadeObject[] stars;
 
+    public GameObject title;
     public GameObject credits;
     public GameObject stuck;
 
@@ -43,12 +44,17 @@ public class Outro : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(4f);
 
-            credits.SetActive(true);
-
+            title.SetActive(true);
             Statics.VFX.screenShake_Magnitude = 0.3f;
             Statics.VFX.screenShake_Time = 0.2f;
 
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSecondsRealtime(2f);
+
+            credits.SetActive(true);
+            Statics.VFX.screenShake_Magnitude = 0.3f;
+            Statics.VFX.screenShake_Time = 0.2f;
+
+            yield return new WaitForSecondsRealtime(4f);
 
             stuck.gameObject.SetActive(true);
         }

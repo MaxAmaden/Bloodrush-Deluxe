@@ -21,6 +21,9 @@ public static class Statics
     public static bool isPaused = false;
 
 
+    public static bool tutorialMode = true;
+
+
     private static List<MonoBehaviour> pauseRequests = new List<MonoBehaviour>();
     public static void Pause(MonoBehaviour script)
     {

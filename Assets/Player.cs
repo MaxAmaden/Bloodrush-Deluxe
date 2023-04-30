@@ -55,11 +55,6 @@ public class Player : MonoBehaviour
     Coroutine collisionPenaltyThread = null;
     Coroutine actionThread = null;
 
-    private void Start()
-    {
-        NextGoal();
-    }
-
     private void Update()
     {
         if (isDisabled) return;
@@ -206,7 +201,7 @@ public class Player : MonoBehaviour
     }
 
 
-    private void NextGoal()
+    public void NextGoal()
     {
         if (currentGoal != null) goals.RemoveAt(0);
 
@@ -244,13 +239,18 @@ public class Player : MonoBehaviour
 
             winText.SetActive(true);
 
-            yield return new WaitForSecondsRealtime(5f);
+            yield return new WaitForSecondsRealtime(7f);
 
             Statics.VFX.FlashScreen(2f, 2f, 2f, Color.black);
 
             yield return new WaitForSecondsRealtime(2f);
 
-            SceneManager.LoadScene("Finish");
+            if (Statics.tutorialMode)
+            {
+                Statics.tutorialMode = false;
+                SceneManager.LoadScene("Main");
+            }
+            else SceneManager.LoadScene("Finish");
         }
     }
 
