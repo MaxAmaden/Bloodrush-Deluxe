@@ -7,6 +7,7 @@ using TMPro;
 public class FadeObject : MonoBehaviour
 {
     [Tooltip("Time taken to complete the fade animation in seconds.")] public float timeToFade = 0.5f;
+    public bool unscaledTime = false;
 
     [Space]
     [Tooltip("Fade in the object when it is enabled.")] public bool toFadeInOnEnable = false;
@@ -44,7 +45,8 @@ public class FadeObject : MonoBehaviour
 
         while (prog < 1)
         {
-            prog = Mathf.Clamp01(prog + Time.deltaTime * (1 / timeToFade));
+            if (unscaledTime) prog = Mathf.Clamp01(prog + Time.unscaledDeltaTime * (1 / timeToFade));
+            else prog = Mathf.Clamp01(prog + Time.deltaTime * (1 / timeToFade));
 
             foreach (SpriteRenderer sprite in sprites) sprite.color = new Vector4(sprite__OriginalColor[sprite].r, sprite__OriginalColor[sprite].g, sprite__OriginalColor[sprite].b, Mathf.Lerp(0, sprite__OriginalColor[sprite].a, prog));
             foreach (Image image in images) image.color = new Vector4(image__OriginalColor[image].r, image__OriginalColor[image].g, image__OriginalColor[image].b, Mathf.Lerp(0, image__OriginalColor[image].a, prog));
@@ -68,7 +70,8 @@ public class FadeObject : MonoBehaviour
 
         while (prog > 0)
         {
-            prog = Mathf.Clamp01(prog - Time.deltaTime * (1 / timeToFade));
+            if (unscaledTime) prog = Mathf.Clamp01(prog - Time.unscaledDeltaTime * (1 / timeToFade));
+            else prog = Mathf.Clamp01(prog - Time.deltaTime * (1 / timeToFade));
 
             foreach (SpriteRenderer sprite in sprites) sprite.color = new Vector4(sprite__OriginalColor[sprite].r, sprite__OriginalColor[sprite].g, sprite__OriginalColor[sprite].b, Mathf.Lerp(0, sprite__OriginalColor[sprite].a, prog));
             foreach (Image image in images) image.color = new Vector4(image__OriginalColor[image].r, image__OriginalColor[image].g, image__OriginalColor[image].b, Mathf.Lerp(0, image__OriginalColor[image].a, prog));

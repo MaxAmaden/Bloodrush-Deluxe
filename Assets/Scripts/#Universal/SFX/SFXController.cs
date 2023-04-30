@@ -226,4 +226,4 @@ public class SoundEffect
 }
 
 
-public enum SoundEffects { none }
+public enum SoundEffects { none, throwPackage, scorePackage }

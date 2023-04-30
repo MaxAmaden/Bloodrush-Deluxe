@@ -57,4 +57,19 @@ public static class Statics
             }
         }
     }
+
+
+    public static class Maths
+    {
+        public static float GetAngleFromVectorDirection(Vector2 direction)
+        {
+            direction = direction.normalized;
+
+            float angle = Vector3.Angle(new Vector3(0.0f, 1.0f, 0.0f), new Vector3(direction.x, direction.y, 0.0f));
+            if (direction.x < 0.0f) angle = -angle + 360;
+
+            return angle;
+        }
+
+    }
 }
