@@ -33,6 +33,8 @@ public class Outro : MonoBehaviour
 
                 star.gameObject.SetActive(true);
 
+                Statics.SFX.PlaySound(SoundEffects.scorePackage);
+
                 yield return new WaitForSecondsRealtime(0.2f);
             }
 
@@ -48,11 +50,15 @@ public class Outro : MonoBehaviour
             Statics.VFX.screenShake_Magnitude = 0.3f;
             Statics.VFX.screenShake_Time = 0.2f;
 
+            Statics.SFX.PlaySound(SoundEffects.SlowMo);
+
             yield return new WaitForSecondsRealtime(2f);
 
             credits.SetActive(true);
             Statics.VFX.screenShake_Magnitude = 0.3f;
             Statics.VFX.screenShake_Time = 0.2f;
+
+            Statics.SFX.PlaySound(SoundEffects.Crash);
 
             yield return new WaitForSecondsRealtime(4f);
 

@@ -52,6 +52,8 @@ public class DashboardUI : MonoBehaviour
 
         IEnumerator PreThrowPackage()
         {
+            Statics.SFX.PlaySound(SoundEffects.PrepareThrow);
+
             yield return Animate_LocalTransformLerp(0.3f, RHand_HeldPackage, RHand_HeldPackage_ShowTransform, RHand_HeldPackage_PreThrowTransform, Curves.GetCurve(Curves.Curve.SlowStartFastEnd), true);
         }
     }
@@ -72,6 +74,8 @@ public class DashboardUI : MonoBehaviour
 
         IEnumerator ThrowPackage()
         {
+            Statics.SFX.PlaySound(SoundEffects.throwPackage);
+
             yield return Animate_LocalTransformLerp(0.1f, RHand_HeldPackage, RHand_HeldPackage_PreThrowTransform, RHand_HeldPackage_PostThrowTransform, Curves.GetCurve(Curves.Curve.SlowStartFastEnd), true);
 
             yield return new WaitForSecondsRealtime(0.05f);

@@ -72,12 +72,16 @@ public class OpeningCutscene : MonoBehaviour
             Statics.VFX.screenShake_Magnitude = 0.2f;
             Statics.VFX.screenShake_Time = 0.2f;
 
+            Statics.SFX.PlaySound(SoundEffects.SlowMo);
+
             yield return new WaitForSeconds(2f);
 
             text6.gameObject.SetActive(true);
 
             Statics.VFX.screenShake_Magnitude = 0.2f;
             Statics.VFX.screenShake_Time = 0.2f;
+
+            Statics.SFX.PlaySound(SoundEffects.FastMo);
 
             yield return new WaitForSeconds(4f);
 

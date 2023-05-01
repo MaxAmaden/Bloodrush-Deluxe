@@ -272,6 +272,7 @@ MonoBehaviour:
   uniformRandomRange: {x: 1, y: 1}
   randomAxisMultiplierLower: {x: 1, y: 1, z: 1}
   randomAxisMultiplierUpper: {x: 1, y: 1, z: 1}
+  unscaledTime: 0
 --- !u!212 &223742077
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1019,6 +1020,7 @@ MonoBehaviour:
   uniformRandomRange: {x: 1, y: 1}
   randomAxisMultiplierLower: {x: 1, y: 1, z: 1}
   randomAxisMultiplierUpper: {x: 1, y: 1, z: 1}
+  unscaledTime: 0
 --- !u!212 &631702607
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2395,15 +2397,35 @@ MonoBehaviour:
   defaultAudioSourceGO: {fileID: 392300371}
   allSoundEffects:
   - identifier: 1
-    audioClip: {fileID: 8300000, guid: 21b8921f96af0694db36b37bd13d2cc0, type: 3}
+    audioClip: {fileID: 8300000, guid: 4087086de6269964b87aa0f5b42ca49a, type: 3}
     randomPitchRange: {x: 1, y: 1}
     toLoop: 0
     volume: 0.5
   - identifier: 2
-    audioClip: {fileID: 8300000, guid: 21b8921f96af0694db36b37bd13d2cc0, type: 3}
+    audioClip: {fileID: 8300000, guid: f1a4c164e7e74ea42b85022222b60f10, type: 3}
+    randomPitchRange: {x: 0.9, y: 1.1}
+    toLoop: 0
+    volume: 0.7
+  - identifier: 3
+    audioClip: {fileID: 8300000, guid: c9e2414c714a7074e8f638f37332d039, type: 3}
     randomPitchRange: {x: 1, y: 1}
     toLoop: 0
     volume: 0.5
+  - identifier: 4
+    audioClip: {fileID: 8300000, guid: 22d3d221fb02b7f4eb5d71693c0b6056, type: 3}
+    randomPitchRange: {x: 1, y: 1}
+    toLoop: 0
+    volume: 0.5
+  - identifier: 5
+    audioClip: {fileID: 8300000, guid: 256cebf15615fc4408866d31f4e2ff1d, type: 3}
+    randomPitchRange: {x: 1, y: 1}
+    toLoop: 0
+    volume: 0.5
+  - identifier: 6
+    audioClip: {fileID: 8300000, guid: f7c2f2f34f8550d468945d5704af6429, type: 3}
+    randomPitchRange: {x: 0.7, y: 1.3}
+    toLoop: 0
+    volume: 0.7
 --- !u!1 &1393144108
 GameObject:
   m_ObjectHideFlags: 0
@@ -2616,6 +2638,7 @@ MonoBehaviour:
   uniformRandomRange: {x: 1, y: 1}
   randomAxisMultiplierLower: {x: 1, y: 1, z: 1}
   randomAxisMultiplierUpper: {x: 1, y: 1, z: 1}
+  unscaledTime: 0
 --- !u!212 &1535905072
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2792,6 +2815,7 @@ MonoBehaviour:
   uniformRandomRange: {x: 1, y: 1}
   randomAxisMultiplierLower: {x: 1, y: 1, z: 1}
   randomAxisMultiplierUpper: {x: 1, y: 1, z: 1}
+  unscaledTime: 0
 --- !u!212 &1671391872
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2933,7 +2957,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.0043745
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

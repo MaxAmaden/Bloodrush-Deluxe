@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public TrailRenderer[] tyreTrails;
     public DashboardUI dashboardUI;
+    public AudioSource engine;
+    public ParticleSystem[] damageParticles;
 
     [Space]
     public GameObject thrownPackage_Prefab;
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
     [Space]
     public GameObject toDestroy_Navigation;
     public GameObject toDestroy_Dashboard;
+    public Timer toDestroy_Timer;
     public ParticleSystem winParticles;
     public GameObject winText;
 
@@ -61,6 +64,9 @@ public class Player : MonoBehaviour
 
         GetInput();
         UpdateUI();
+
+        engine.pitch = 0.5f + (rb.velocity.magnitude / maxSpeed);
+        if (isActionMode) engine.pitch /= 2f;
     }
 
     private void GetInput()
@@ -236,6 +242,7 @@ public class Player : MonoBehaviour
 
             toDestroy_Navigation.SetActive(false);
             toDestroy_Dashboard.SetActive(false);
+            if (!Statics.tutorialMode) toDestroy_Timer.enabled = false;
 
             winText.SetActive(true);
 
@@ -317,6 +324,8 @@ public class Player : MonoBehaviour
         isAccelerating = true;
 
         dashboardUI.Anim_HoldPackage();
+
+        Statics.SFX.PlaySound(SoundEffects.SlowMo);
     }
     private void ExitActionMode(bool wasCancelled = false)
     {
@@ -326,6 +335,8 @@ public class Player : MonoBehaviour
         Time.timeScale = 1.0f;
 
         if (wasCancelled) dashboardUI.Anim_HidePackage();
+
+        Statics.SFX.PlaySound(SoundEffects.FastMo);
     }
 
 
@@ -356,6 +367,10 @@ public class Player : MonoBehaviour
             rb.AddTorque(3f * (Random.value < 0.5f ? 1f : -1f) * (0.5f + (rb.velocity.magnitude / maxSpeed / 2f)) * rb.mass, ForceMode2D.Impulse);
 
             foreach (TrailRenderer tyreTrail in tyreTrails) tyreTrail.emitting = false;
+
+            Statics.SFX.PlaySound(SoundEffects.Crash);
+
+            foreach (var particle in damageParticles) particle.Play();
 
 
             // Wait and cancel penalty.
