@@ -489,7 +489,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.005497
+  orthographic size: 6.011191
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2109,7 +2109,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'btw, you''re now stuck on this screen for eternity    c :'
+  m_text: 'btw, you can press [R] to have another go    c :'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e5c4a9d6b4cc9aa4f9855c8c43dd3e56, type: 2}
   m_sharedMaterial: {fileID: -7105863300914086397, guid: e5c4a9d6b4cc9aa4f9855c8c43dd3e56, type: 2}

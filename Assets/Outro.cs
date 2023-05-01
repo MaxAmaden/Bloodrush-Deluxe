@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Outro : MonoBehaviour
 {
@@ -64,5 +65,10 @@ public class Outro : MonoBehaviour
 
             stuck.gameObject.SetActive(true);
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene("Main");
     }
 }

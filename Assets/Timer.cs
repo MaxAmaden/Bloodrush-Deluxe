@@ -22,7 +22,7 @@ public class Timer : MonoBehaviour
 
         minutes.text = "" + Mathf.FloorToInt(timer / 60f);
 
-        seconds.text = "" + Mathf.FloorToInt(timer);
+        seconds.text = "" + Mathf.FloorToInt(timer % 60f);
         if (seconds.text.Length == 1) seconds.text = "0" + seconds.text;
 
         fractions.text = "" + Mathf.FloorToInt((timer % 1f) * 100f);

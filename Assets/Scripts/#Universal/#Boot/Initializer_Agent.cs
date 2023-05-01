@@ -20,10 +20,10 @@ public class Initializer_Agent : MonoBehaviour
 
         Initializer.FinishInitializing();
 #else
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSecondsRealtime(5.0f);
 
-        Statics.VFX.FlashScreen(0.75f, 5f, 0f, Color.black);
-        yield return new WaitForSeconds(0.75f);
+        Statics.VFX.FlashScreen(0.75f, 0.1f, 1f, Color.black);
+        yield return new WaitForSecondsRealtime(0.75f);
 
         Initializer.FinishInitializing();
 #endif
